@@ -18,16 +18,16 @@ namespace LearnAPI.Controllers
 
         public ProductController(IMediator mediator) => _mediator = mediator;
 
-        [HttpGet("{id}")]
-        public async Task<ProductDto> Get([FromRoute] int id)
-        {
-            return await _mediator.Send(new GetProductQuery(id));
-        }
-
         [HttpGet]
         public async Task<List<ProductDto>> GetProducts()
         {
             return await _mediator.Send(new GetAllProductsQuery());
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ProductDto> Get([FromRoute] int id)
+        {
+            return await _mediator.Send(new GetProductQuery(id));
         }
 
         [HttpPost]
